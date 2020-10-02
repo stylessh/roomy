@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Home from "./screens/Home";
+import Navbar from "./components/Navbar";
 
-function App() {
+import { AnimatePresence } from "framer-motion";
+
+import "./sass/index.scss";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+
+      <main>
+        <AnimatePresence>
+          <Home />
+        </AnimatePresence>
+      </main>
+    </>
   );
-}
+};
 
 export default App;
