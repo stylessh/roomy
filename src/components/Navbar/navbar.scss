@@ -1,0 +1,143 @@
+@import "../../sass/variables.scss";
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  padding: 5em;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+
+  .hamburguer,
+  .close {
+    display: none;
+  }
+
+  .logo {
+    img {
+      vertical-align: top;
+    }
+  }
+
+  .navbar {
+    margin-left: 3em;
+
+    li {
+      list-style: none;
+      display: inline-block;
+      margin: 0 1em;
+    }
+
+    a {
+      position: relative;
+      color: $white;
+      text-decoration: none;
+      font-weight: 700;
+
+      &::after {
+        display: block;
+        content: "";
+        margin: 0 auto;
+        width: 0;
+        height: 2px;
+        background: $white;
+
+        position: absolute;
+        bottom: -5px;
+
+        transform-origin: center center;
+        transition: all ease-in-out 0.2s;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    .logo {
+      margin: auto;
+    }
+
+    .hamburguer {
+      display: block;
+    }
+
+    .close {
+      display: block;
+    }
+
+    .navbar {
+      position: fixed;
+      top: -50vh;
+      left: 0;
+      right: 0;
+
+      margin: 0;
+      z-index: 9999;
+
+      background: $white;
+
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      height: 10em;
+
+      transition: all 0.5s ease-in-out;
+
+      &::after {
+        display: block;
+        content: "";
+        position: fixed;
+        top: 10em;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        width: 100%;
+        visibility: hidden;
+        opacity: 0;
+
+        z-index: -1;
+
+        background: rgba($color: $black, $alpha: 0.7);
+      }
+
+      &.active {
+        top: 0;
+
+        &::after {
+          opacity: 1;
+          animation: fadeIn;
+          animation-duration: 0.2s;
+          animation-delay: 0.5s;
+          animation-fill-mode: both;
+        }
+      }
+
+      a {
+        color: $black;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
